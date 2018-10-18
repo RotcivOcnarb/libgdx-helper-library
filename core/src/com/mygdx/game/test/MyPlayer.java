@@ -8,12 +8,11 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.objects.PlatformPlayer;
 import com.mygdx.game.objects.TopDownPlayer;
 
-public class MyPlayer extends PlatformPlayer{
+public class MyPlayer extends TopDownPlayer{
 
-	public MyPlayer(World world, Vector2 position) {
-		super(world, position, new Vector2(30, 50));
+	public MyPlayer(World world, Vector2 position, Vector2 size) {
+		super(world, position, size.x/2f);
 		setSpeed(5);
-		setJumpStrength(15);
 	}
 
 	public void render(SpriteBatch sb, ShapeRenderer sr, OrthographicCamera camera) {

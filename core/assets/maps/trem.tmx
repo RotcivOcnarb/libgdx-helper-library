@@ -1,24 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="56" height="47" tilewidth="16" tileheight="16" infinite="0" nextobjectid="98">
+<map version="1.2" tiledversion="1.2.0" orientation="orthogonal" renderorder="right-down" width="56" height="47" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="98">
  <tileset firstgid="1" source="imagens.tsx"/>
  <tileset firstgid="21" source="sheet.tsx"/>
  <tileset firstgid="157" source="bert.tsx"/>
- <objectgroup name="Camada de Objetos 1">
+ <objectgroup id="1" name="Camada de Objetos 1">
   <object id="87" type="object" x="156" y="-4" width="32" height="1006"/>
   <object id="88" type="object" x="146" y="-28" width="760" height="30"/>
   <object id="89" type="object" x="156" y="974" width="746" height="30"/>
   <object id="90" type="object" x="876" y="-36" width="32" height="1044"/>
-  <object id="91" name="Player" x="446.667" y="856">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.MyPlayer"/>
-    <property name="constructorFields" type="int" value="2"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{position}"/>
-   </properties>
-   <ellipse/>
-  </object>
+  <object id="91" template="Player.tx" x="446.667" y="856"/>
   <object id="96" name="arm-begin" x="121.333" y="1041.67">
    <properties>
     <property name="class" value="com.mygdx.game.test.Arm"/>

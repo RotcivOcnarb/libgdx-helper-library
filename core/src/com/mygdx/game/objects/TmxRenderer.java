@@ -79,16 +79,15 @@ public class TmxRenderer extends GameObject{
 		while(layers.hasNext()) {
 			MapLayer layer = layers.next();
 			
-			parser.load(state.getWorld(), layer);
-			
+						
 			MapObjects mos = layer.getObjects();
 			
 			for(int k = 0; k < mos.getCount(); k ++) {
 				MapProperties props =  mos.get(k).getProperties();
 				
+				
 				String objClass = props.get("class", String.class);
 				if(objClass != null) {
-					
 					
 					
 					try {
@@ -96,13 +95,10 @@ public class TmxRenderer extends GameObject{
 						Class goClass = Class.forName(objClass);
 						//Pega a quantidade de argumentos do construtor
 						int numFields = props.get("constructorFields", Integer.class);
-						System.out.println("Classe com " + numFields + " valores pra passar pro construtor");
 						//Pega todas as classes da cada argumento do construtor
 						Class constructorTypes[] = new Class[numFields];
 						for(int i = 0; i < numFields; i ++) {
-							
 							constructorTypes[i] = Class.forName(props.get("field" + (i+1), String.class));
-							System.out.println("Valor " + (i+1) + ": " + constructorTypes[i].getName());
 						}
 						
 						//Pega os valores dos argumentos pra serem passados
@@ -116,19 +112,19 @@ public class TmxRenderer extends GameObject{
 							boolean found = false;
 							
 							for(TmxInstancedKeyword tik : keywords) {
-								if(props.get("fieldValue" + (i+1), String.class).startsWith(tik.getKeyword())) {
-									if(props.get("fieldValue" + (i+1), String.class).endsWith("_")) {
-										obj = tik.getObject(layer.getObjects().get(props.get("fieldValue" + (i+1), String.class).split("_")[1]));
-										found = true;
-										break;
+								if(props.get("fieldValue" + (i+1)) instanceof String) {
+									if(props.get("fieldValue" + (i+1), String.class).startsWith(tik.getKeyword())) {
+										if(props.get("fieldValue" + (i+1), String.class).endsWith("_")) {
+											obj = tik.getObject(layer.getObjects().get(props.get("fieldValue" + (i+1), String.class).split("_")[1]));
+											found = true;
+											break;
+										}
+										else {
+											obj = tik.getObject(mos.get(k));
+											found = true;
+											break;
+										}
 									}
-									else {
-										obj = tik.getObject(mos.get(k));
-										found = true;
-										break;
-									}
-									
-									
 								}
 							}
 							
@@ -140,7 +136,6 @@ public class TmxRenderer extends GameObject{
 						
 						GameObject go = (GameObject) goClass.getConstructor(constructorTypes).newInstance(fields);
 						state.putToUpdate(go);
-						System.out.println("Botando objeto " + mos.get(k).getName() + " na lista");
 						instancedObjects.put(mos.get(k).getName(), go);
 						
 					} catch (InstantiationException e) {
@@ -258,17 +253,19 @@ public class TmxRenderer extends GameObject{
 				for(int k = 0; k < mos.getCount(); k ++) {
 					if(mos.get(k) instanceof TiledMapTileMapObject) {
 						TiledMapTileMapObject imgObj = (TiledMapTileMapObject) mos.get(k);
-						Helper.renderRegion(
-								sb,
-								imgObj.getTile().getTextureRegion(),
-								new Vector2(imgObj.getX(), imgObj.getY()).cpy().scl(scale/State.PHYS_SCALE),
-								360 - imgObj.getRotation(),
-								new Vector2(scale * imgObj.getScaleX() / State.PHYS_SCALE, scale * imgObj.getScaleY() / State.PHYS_SCALE),
-								imgObj.isFlipHorizontally(),
-								imgObj.isFlipVertically(),
-								new Vector2(scale * imgObj.getOriginX() / State.PHYS_SCALE, scale * imgObj.getOriginY() / State.PHYS_SCALE)
-								);
-						;
+						
+						if(imgObj.getProperties().get("render") == null || imgObj.getProperties().get("render", Boolean.class) ) {
+								Helper.renderRegion(
+										sb,
+										imgObj.getTile().getTextureRegion(),
+										new Vector2(imgObj.getX(), imgObj.getY()).cpy().scl(scale/State.PHYS_SCALE),
+										360 - imgObj.getRotation(),
+										new Vector2(scale * imgObj.getScaleX() / State.PHYS_SCALE, scale * imgObj.getScaleY() / State.PHYS_SCALE),
+										imgObj.isFlipHorizontally(),
+										imgObj.isFlipVertically(),
+										new Vector2(scale * imgObj.getOriginX() / State.PHYS_SCALE, scale * imgObj.getOriginY() / State.PHYS_SCALE)
+										);
+						}
 					}
 				}
 			}

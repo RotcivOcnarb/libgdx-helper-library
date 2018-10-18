@@ -21,7 +21,7 @@ public abstract class GameObject {
 	protected Transform transform;
 	
 	public GameObject(Vector2 position) {
-		transform = new Transform(position);
+		transform = new Transform(position.cpy());
 	}
 	
 	public abstract void render(SpriteBatch sb, ShapeRenderer sr, OrthographicCamera camera);

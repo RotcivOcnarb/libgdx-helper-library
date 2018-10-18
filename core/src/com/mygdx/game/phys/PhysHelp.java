@@ -66,6 +66,20 @@ public class PhysHelp {
 		return b;
 	}
 	
+	public static Body createDynamicCircleBody(World world, Vector2 position, float radius, boolean fixedRotation) {
+		
+		BodyDef def = new BodyDef();
+		def.position.set(position.cpy().scl(1/State.PHYS_SCALE));
+		def.fixedRotation = fixedRotation;
+		def.type = BodyType.DynamicBody;
+		
+		Body b =  world.createBody(def);
+		
+		createCircleFixture(b, Vector2.Zero, radius);
+		
+		return b;
+	}
+	
 	public static Body createStaticCircleBody(World world, Vector2 position, float radius) {
 		
 		BodyDef def = new BodyDef();

@@ -8,9 +8,9 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.helper.Helper;
-import com.mygdx.game.structs.Transform;
+import com.mygdx.game.states.State;
 
 public class GameParticle extends GameObject{
 
@@ -18,7 +18,6 @@ public class GameParticle extends GameObject{
 	//User defined
 	Texture image;
 	String text;
-	Transform relative;
 	BitmapFont font;
 	Color fontColor;
 	Vector2 velocity;
@@ -29,6 +28,8 @@ public class GameParticle extends GameObject{
 	//Interno	
 	float globalTimer;
 	GlyphLayout layout;
+	
+	
 	
 	private GameParticle(Vector2 position) {
 		super(position);
@@ -67,10 +68,6 @@ public class GameParticle extends GameObject{
 		image = texture;
 	}
 	
-	public void setRelativeTransform(Transform transform) {
-		relative = transform;
-	}
-	
 	public void setText(String text) {
 		this.text = text;
 	}
@@ -89,10 +86,14 @@ public class GameParticle extends GameObject{
 		}
 
 		if(text != null) {
-			font.setColor(1, 1, 1, Math.min(1, life - globalTimer));
+			sb.setProjectionMatrix(Helper.getDefaultProjection());
+			font.setColor(fontColor.r, fontColor.g, fontColor.b, Math.min(1, life - globalTimer));
 			layout.setText(font, text);
-			font.draw(sb, text, transform.getPosition().x - layout.width/2f, transform.getPosition().y);
+			
+			Vector3 rpos = camera.project(new Vector3(transform.getPosition(), 0));
+			font.draw(sb, text, rpos.x - layout.width/2f, rpos.y);
 			font.setColor(1, 1, 1, 1);
+			sb.setProjectionMatrix(camera.combined);
 		}
 		
 		sb.setColor(1, 1, 1, 1);
@@ -106,10 +107,13 @@ public class GameParticle extends GameObject{
 			return true;
 		}
 		
-		transform.setPosition(transform.getPosition().add(velocity));
+	
+		
+		transform.getPosition().add(velocity);
 		velocity.add(gravity);
 		
 		velocity.scl((float) Math.exp(-drag));
+		
 		
 		return false;
 	}

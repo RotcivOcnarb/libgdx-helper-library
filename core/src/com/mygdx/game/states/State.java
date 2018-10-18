@@ -130,10 +130,13 @@ public abstract class State{
 			}
 		}
 		
+		
 		for(int i = particles.size() -1; i >= 0; i --) {
 			if(particles.get(i).update(delta)) {
 				particles.remove(i);
 			}
+			
+
 		}
 	}
 	
