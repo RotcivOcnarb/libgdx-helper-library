@@ -30,7 +30,7 @@ public class TmxRenderer extends GameObject{
 	float scale;
 	Vector2 scaleVector;
 	Box2DMapObjectParser parser;
-	HashMap<String, GameObject> instancedObjects;
+	HashMap<Integer, InstancedObject> instancedObjects;
 	ArrayList<TmxInstancedKeyword> keywords;
 	State state;
 	
@@ -38,7 +38,7 @@ public class TmxRenderer extends GameObject{
 		super(Vector2.Zero);
 		this.state = state;
 		parser = new Box2DMapObjectParser(scale/State.PHYS_SCALE);
-		instancedObjects = new HashMap<String, GameObject>();
+		instancedObjects = new HashMap<Integer, InstancedObject>();
 		keywords = new ArrayList<TmxInstancedKeyword>();
 		loadDefaultKeywords();
 		this.scale = scale;
@@ -136,7 +136,7 @@ public class TmxRenderer extends GameObject{
 						
 						GameObject go = (GameObject) goClass.getConstructor(constructorTypes).newInstance(fields);
 						state.putToUpdate(go);
-						instancedObjects.put(mos.get(k).getName(), go);
+						instancedObjects.put(mos.get(k).getProperties().get("id", Integer.class), new InstancedObject(go, props.get("render") != null && props.get("render", Boolean.class)));
 						
 					} catch (InstantiationException e) {
 						e.printStackTrace();
@@ -204,8 +204,8 @@ public class TmxRenderer extends GameObject{
 		keywords.add(tik);
 	}
 	
-	public GameObject getInstancedObject(String name) {
-		return instancedObjects.get(name);
+	public GameObject getInstancedObject(Integer i) {
+		return instancedObjects.get(i).object;
 	}
 
 	Vector2 positionTemp = new Vector2(0, 0);
@@ -271,6 +271,12 @@ public class TmxRenderer extends GameObject{
 			}
 		}
 		sb.end();
+		
+		for(Integer key : instancedObjects.keySet()) {
+			if(instancedObjects.get(key).render) {
+				instancedObjects.get(key).object.render(sb, sr, camera);
+			}
+		}
 	}
 	
 	public Vector2 getPositionFromObject(String objectName) {
@@ -290,6 +296,16 @@ public class TmxRenderer extends GameObject{
 
 	public boolean update(float delta) {
 		return false;
+	}
+	
+	class InstancedObject{
+		GameObject object;
+		boolean render;
+		
+		public InstancedObject(GameObject object, boolean render) {
+			this.object = object;
+			this.render = render;
+		}
 	}
 
 }

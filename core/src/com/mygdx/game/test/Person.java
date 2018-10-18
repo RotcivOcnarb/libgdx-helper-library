@@ -31,12 +31,19 @@ public class Person extends GameObject{
 		font = Helper.newFont("Allan-Bold.ttf", 24);
 	}
 	
-	public Person(World world, Vector2 position, Float strength, Vector2 size, State state) {
+	Vector2 grabPosition;
+	Arm arm;
+	
+	public Person(World world, Vector2 position, Float strength, Vector2 size, State state, Vector2 grabPosition) {
 		super(Vector2.Zero);
 				
 		this.state = state;
 		this.originalPosition = position.cpy();
 		this.strength = strength;
+		this.grabPosition = grabPosition.cpy();
+		
+		arm = new Arm(position.cpy(), grabPosition);
+		state.putToUpdate(arm);
 		
 		body = PhysHelp.createDynamicCircleBody(world, position, size.x/2f, true);
 		body.setLinearDamping(10);
@@ -45,12 +52,14 @@ public class Person extends GameObject{
 	@Override
 	public void render(SpriteBatch sb, ShapeRenderer sr, OrthographicCamera camera) {
 		// TODO Auto-generated method stub
+		arm.render(sb, sr, camera);
 		
 	}
 
 	@Override
 	public boolean update(float delta) {
 		angryTime -= delta;
+		arm.setArmStart(body.getWorldCenter().cpy().scl(State.PHYS_SCALE));
 		body.applyForceToCenter(body.getWorldCenter().sub(originalPosition.cpy().scl(1/State.PHYS_SCALE)).scl(-strength), true);
 		
 		if(body.getWorldCenter().sub(originalPosition.cpy().scl(1/State.PHYS_SCALE)).len() > 0.3f) {

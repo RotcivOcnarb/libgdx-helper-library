@@ -3,13 +3,16 @@ package com.mygdx.game.states;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.mygdx.game.helper.Game;
 import com.mygdx.game.objects.TmxRenderer;
+import com.mygdx.game.test.Arm;
 import com.mygdx.game.test.MyPlayer;
 
 public class StateOne extends State{
 	
 	TmxRenderer mapRenderer;
 	MyPlayer player;
+	
 	
 	public StateOne(StateManager manager) {
 		super(manager);
@@ -22,23 +25,25 @@ public class StateOne extends State{
 		
 		mapRenderer = new TmxRenderer(this, "maps/untitled.tmx", 1);
 		mapRenderer.instanceObjects();
+		putToUpdate(mapRenderer);
 		
-		player = (MyPlayer) mapRenderer.getInstancedObject("Player");
+		
+		player = (MyPlayer) mapRenderer.getInstancedObject(9);
 		System.out.println(player);
 		
-		putToUpdate(mapRenderer);
+		
 	}
 
 	public void render(SpriteBatch sb) {
 		mapRenderer.render(sb, sr, camera);
 		player.render(sb, sr, camera);
-		
 	}
 
 	public void update(float delta) {
 		camera.position.add(
 				new Vector3(player.getBodyPosition().cpy().sub(camera.position.x, camera.position.y).scl(1/15f), 0)
 				);
+		
 	}
 
 	public void dispose() {

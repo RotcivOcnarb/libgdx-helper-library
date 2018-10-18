@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.helper.Game;
 import com.mygdx.game.objects.GameObject;
@@ -16,7 +17,7 @@ public class Arm extends GameObject{
 	Texture arm;
 	
 	float length = 100;
-	float scale = 3;
+	float scale = 1;
 	
 	Vector2 armStart, armEnd;
 	
@@ -47,7 +48,7 @@ public class Arm extends GameObject{
 			sb.draw(
 					arm,
 					armStart.x / State.PHYS_SCALE,
-					armStart.y / State.PHYS_SCALE,
+					armStart.y / State.PHYS_SCALE - arm.getHeight()/2f / State.PHYS_SCALE,
 					0,
 					arm.getHeight()/2f / State.PHYS_SCALE,
 					length / State.PHYS_SCALE,
@@ -63,12 +64,14 @@ public class Arm extends GameObject{
 					false
 					);
 			
+			Vector2 origin = new Vector2(hand.getWidth()/3 / State.PHYS_SCALE, hand.getHeight()/2 / State.PHYS_SCALE);
+			
 			sb.draw(
 					hand,
-					armEnd.x / State.PHYS_SCALE,
-					armEnd.y / State.PHYS_SCALE,
-					0,
-					hand.getHeight()/2f / State.PHYS_SCALE,
+					armEnd.x / State.PHYS_SCALE - origin.x,
+					armEnd.y / State.PHYS_SCALE - origin.y,
+					origin.x,
+					origin.y,
 					hand.getWidth() / State.PHYS_SCALE,
 					hand.getHeight() / State.PHYS_SCALE,
 					scale,
@@ -83,6 +86,7 @@ public class Arm extends GameObject{
 					);
 		
 		sb.end();
+		
 		
 	}
 

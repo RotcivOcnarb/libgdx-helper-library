@@ -93,6 +93,7 @@ public abstract class State{
 	
 	public void preRender(SpriteBatch sb) {
 		sb.setProjectionMatrix(camera.combined);
+		sr.setProjectionMatrix(camera.combined);
 	}
 	
 	public abstract void render(SpriteBatch sb);
