@@ -94,12 +94,18 @@ public class TmxRenderer extends GameObject{
 						//Pega a classe que vai ser instanciada
 						Class goClass = Class.forName(objClass);
 						//Pega a quantidade de argumentos do construtor
-						int numFields = props.get("constructorFields", Integer.class);
+						int numFields = 0;
+						try {
+							numFields = props.get("constructorFields", Integer.class);
+						}catch(Exception e) {
+							System.err.println("Objeto " + props.get("id") + " tem propriedade numFields escrito errada");
+						}
 						//Pega todas as classes da cada argumento do construtor
 						Class constructorTypes[] = new Class[numFields];
 						for(int i = 0; i < numFields; i ++) {
 							constructorTypes[i] = Class.forName(props.get("field" + (i+1), String.class));
 						}
+						
 						
 						//Pega os valores dos argumentos pra serem passados
 						
@@ -187,6 +193,21 @@ public class TmxRenderer extends GameObject{
 		addKeywordInterpreter(new TmxInstancedKeyword("{state}") {
 			public Object getObject(MapObject mo) {
 				return state;
+			}
+		});
+		addKeywordInterpreter(new TmxInstancedKeyword("{this}") {
+			public Object getObject(MapObject mo) {
+				return mo;
+			}
+		});
+		addKeywordInterpreter(new TmxInstancedKeyword("{scale}") {
+			public Object getObject(MapObject mo) {
+				return scale;
+			}
+		});
+		addKeywordInterpreter(new TmxInstancedKeyword("{null}") {
+			public Object getObject(MapObject mo) {
+				return null;
 			}
 		});
 		addKeywordInterpreter(new TmxInstancedKeyword("{center}") {

@@ -125,4 +125,7 @@ public class Helper {
 		return new Matrix4().setToOrtho2D(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 
+	public static Vector2 newPolarVector(float angle, float magnitude) {
+		return new Vector2((float)Math.cos(Math.toRadians(angle)) * magnitude, (float)Math.sin(Math.toRadians(angle)) * magnitude);
+	}
 }
