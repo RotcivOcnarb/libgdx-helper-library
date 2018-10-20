@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.mygdx.game.objects.ObjectInfo;
 import com.mygdx.game.objects.TmxRenderer;
 import com.mygdx.game.test.MyPlayer;
 
@@ -26,23 +27,22 @@ public class StateOne extends State{
 		
 		handles = new ArrayList<Vector2>();
 		
-		mapRenderer = new TmxRenderer(this, "maps/trem.tmx", 4);
+		mapRenderer = new TmxRenderer(new ObjectInfo(this, 0, 4f), "maps/trem.tmx");
 		mapRenderer.instanceObjects();
-		putToUpdate(mapRenderer);
 		
 		
 		player = (MyPlayer) mapRenderer.getInstancedObject(91);
-		System.out.println(player);
 		
 		
 	}
 
 	public void render(SpriteBatch sb) {
 		mapRenderer.render(sb, sr, camera);
-		player.render(sb, sr, camera);
 	}
 
 	public void update(float delta) {
+		mapRenderer.update(delta);
+		
 		camera.position.add(
 				new Vector3(player.getBodyPosition().cpy().sub(camera.position.x, camera.position.y).scl(1/15f), 0)
 				);

@@ -1,16 +1,13 @@
 package com.mygdx.game.objects;
 
 import com.badlogic.gdx.Input.Keys;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.game.phys.EmptyContact;
 import com.mygdx.game.phys.PhysHelp;
 import com.mygdx.game.states.State;
@@ -29,15 +26,15 @@ public abstract class PlatformPlayer extends GameObject{
 	protected int totalJumps;
 	protected float speed = 10;
 	
-	public PlatformPlayer(World world, Vector2 position, Vector2 size) {
-		super(position);
+	public PlatformPlayer(ObjectInfo info, MapProperties properties) {
+		super(info, properties);
 		BodyDef def = new BodyDef();
 		onFloor = true;
-		def.position.set(position.cpy().scl(1/State.PHYS_SCALE));
+		def.position.set(get("position", Vector2.class).cpy().scl(1/State.PHYS_SCALE));
 		def.type = BodyType.DynamicBody;
 		def.fixedRotation = true;
-		body = PhysHelp.createBoxBody(world, size, def);
-		Fixture foot = PhysHelp.createCircleFixture(body, new Vector2(0, -size.y/2f), size.x/2f);
+		body = PhysHelp.createBoxBody(getState().getWorld(), get("size", Vector2.class), def);
+		Fixture foot = PhysHelp.createCircleFixture(body, new Vector2(0, -get("size", Vector2.class).y/2f), get("size", Vector2.class).x/2f);
 		foot.setUserData("PLAYER_FOOT");
 		body.setUserData(this);
 		setJumpStrength(20);

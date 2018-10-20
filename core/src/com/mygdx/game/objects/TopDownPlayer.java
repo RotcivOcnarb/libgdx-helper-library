@@ -4,6 +4,7 @@ import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -19,13 +20,19 @@ public abstract class TopDownPlayer extends GameObject{
 	protected Vector2 input;
 	
 	
-	public TopDownPlayer(World world, Vector2 position, float radius) {
-		super(position);
+	int keyUp = Keys.UP;
+	int keyDown = Keys.DOWN;
+	int keyLeft = Keys.LEFT;
+	int keyRight = Keys.RIGHT;
+	
+	public TopDownPlayer(ObjectInfo info, MapProperties properties) {
+		super(info, properties);
+		transform.setPosition(Vector2.Zero.cpy());
 		BodyDef def = new BodyDef();
 		def.type = BodyType.DynamicBody;
 		def.fixedRotation = true;
-		def.position.set(position.cpy().scl(1/State.PHYS_SCALE));
-		body = PhysHelp.creatCircleBody(world, radius, def);
+		def.position.set(get("position", Vector2.class).cpy().scl(1/State.PHYS_SCALE));
+		body = PhysHelp.creatCircleBody(getState().getWorld(), get("width", Float.class)/2f, def);
 		body.setUserData(this);
 		input = new Vector2();
 	}
@@ -40,16 +47,16 @@ public abstract class TopDownPlayer extends GameObject{
 	}
 	
 	public boolean keyDown(int keycode) {
-		if(keycode == Keys.LEFT) {
+		if(keycode == keyLeft) {
 			input.x = -1;
 		}
-		if(keycode == Keys.RIGHT) {
+		if(keycode == keyRight) {
 			input.x = 1;
 		}
-		if(keycode == Keys.UP) {
+		if(keycode == keyUp) {
 			input.y = 1;
 		}
-		if(keycode == Keys.DOWN) {
+		if(keycode == keyDown) {
 			input.y = -1;
 		}
 
@@ -57,19 +64,19 @@ public abstract class TopDownPlayer extends GameObject{
 	}
 
 	public boolean keyUp(int keycode) {
-		if(keycode == Keys.LEFT) {
+		if(keycode == keyLeft) {
 			if(input.x == -1)
 			input.x = 0;
 		}
-		if(keycode == Keys.RIGHT) {
+		if(keycode == keyRight) {
 			if(input.x == 1)
 			input.x = 0;
 		}
-		if(keycode == Keys.UP) {
+		if(keycode == keyUp) {
 			if(input.y == 1)
 			input.y = 0;
 		}
-		if(keycode == Keys.DOWN) {
+		if(keycode == keyDown) {
 			if(input.y == -1)
 			input.y = 0;
 		}
@@ -90,5 +97,37 @@ public abstract class TopDownPlayer extends GameObject{
 
 	public void setBodyPosition(Vector2 position) {
 		body.setTransform(position.x, position.y, 0);
+	}
+
+	public int getKeyUp() {
+		return keyUp;
+	}
+
+	public void setKeyUp(int keyUp) {
+		this.keyUp = keyUp;
+	}
+
+	public int getKeyDown() {
+		return keyDown;
+	}
+
+	public void setKeyDown(int keyDown) {
+		this.keyDown = keyDown;
+	}
+
+	public int getKeyLeft() {
+		return keyLeft;
+	}
+
+	public void setKeyLeft(int keyLeft) {
+		this.keyLeft = keyLeft;
+	}
+
+	public int getKeyRight() {
+		return keyRight;
+	}
+
+	public void setKeyRight(int keyRight) {
+		this.keyRight = keyRight;
 	}
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="56" height="47" tilewidth="16" tileheight="16" infinite="0" nextobjectid="199">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="56" height="47" tilewidth="16" tileheight="16" infinite="0" nextobjectid="269">
  <tileset firstgid="1" source="imagens.tsx"/>
  <tileset firstgid="22" source="sheet.tsx"/>
  <tileset firstgid="158" source="bert.tsx"/>
@@ -11,1453 +11,188 @@
   <object id="91" name="Player" x="420.167" y="829.25" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.MyPlayer"/>
-    <property name="constructorFields" type="int" value="3"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{position}"/>
-    <property name="fieldValue3" value="{size}"/>
+    <property name="position" value="{center}"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="114" type="person" x="386" y="842.333" width="10" height="10">
+  <object id="244" x="392.386" y="843.068" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="115" type="person" x="366.333" y="842.333" width="10" height="10">
+  <object id="247" x="404" y="819.455">
    <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="116" type="person" x="343.667" y="843" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="117" type="person" x="328.333" y="843" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="118" type="person" x="309.667" y="842.667" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="119" type="person" x="290" y="842.667" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="120" type="person" x="278.333" y="824.667" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="134" type="person" x="409" y="844.5" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="135" type="person" x="395.5" y="855.25" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="136" type="person" x="410.25" y="860.75" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="137" type="person" x="422" y="852" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="138" type="person" x="433" y="843" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="139" type="person" x="444.25" y="850" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="140" type="person" x="431.25" y="864" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="141" type="person" x="464.25" y="862.25" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="142" type="person" x="461.5" y="838" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="143" type="person" x="450" y="836" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="144" type="person" x="447.25" y="863.25" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="145" type="person" x="475" y="849" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="146" type="person" x="480.75" y="870.75" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="147" type="person" x="494.75" y="853.75" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="148" type="person" x="497.25" y="843.25" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="149" type="person" x="459.25" y="850.5" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="150" type="person" x="482" y="858" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="151" type="person" x="486.75" y="844.5" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="152" type="person" x="500" y="866" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="153" type="person" x="512.75" y="865.25" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="154" type="person" x="507" y="852.5" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="155" type="person" x="519" y="847.25" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="156" type="person" x="523.5" y="859" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="157" type="person" x="537" y="867.5" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="158" type="person" x="541" y="857" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="159" type="person" x="532.5" y="844" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="160" type="person" x="560.5" y="847.75" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="161" type="person" x="552.75" y="858.5" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="162" type="person" x="565.25" y="870.25" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="163" type="person" x="576.5" y="879.25" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="164" type="person" x="584.5" y="868.25" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="165" type="person" x="569.25" y="858.5" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="166" type="person" x="582.75" y="848.75" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="167" type="person" x="376.25" y="854.75" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="168" type="person" x="360.25" y="854.75" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="169" type="person" x="344" y="855" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="170" type="person" x="331" y="853.25" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="171" type="person" x="310.5" y="854.25" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="172" type="person" x="297.5" y="854.25" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="173" type="person" x="404.75" y="827" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="174" type="person" x="388.5" y="826.75" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="175" type="person" x="295.5" y="823.5" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="176" type="person" x="277" y="836.75" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <ellipse/>
-  </object>
-  <object id="177" type="person" x="276.5" y="853.25" width="10" height="10">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="class" value="com.mygdx.game.test.RailHandler"/>
+    <property name="polyline" value="{this}"/>
    </properties>
-   <ellipse/>
+   <polyline points="0,0 0,2.375 0.375,5.75 0.375,10 -0.25,15.125 -0.25,17.5 -0.25,18.75 -3,20.625 -6.875,21 -10.875,21.625 -18.125,21.625 -21,21.625 -26.375,21.375 -37.25,21.5 -43.125,21.5 -45.5,21.5 -53.25,21.5 -61.75,21.5 -66.625,21.5 -73.75,21.25 -76.875,21.375 -80.25,21.25 -84.75,21.25 -87.875,20.75 -95.5,20.75 -97.25,21 -102.625,21.5 -104,21.5 -105.5,21.5 -109.625,21 -110.125,20.125 -110.125,17.625 -110,15.25 -109.5,11.75 -109.625,7.875 -110.25,4.75 -111.25,0.5 -111.25,-0.625"/>
   </object>
-  <object id="178" type="person" x="275" y="867.5" width="10" height="10">
+  <object id="248" x="470.909" y="889.273">
    <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="class" value="com.mygdx.game.test.RailHandler"/>
+    <property name="polyline" value="{this}"/>
    </properties>
-   <ellipse/>
+   <polyline points="0,0 0.181818,-4.36364 0.181818,-8.36364 0.181818,-15.4545 0.181818,-18 1.27273,-20.5455 4,-21.2727 10.9091,-21.6364 14.7273,-21.4545 31.0909,-21.4545 34.9091,-21.4545 49.2727,-21.2727 54.1818,-21.0909 64.5455,-21.0909 68.3636,-21.2727 74.1818,-21.2727 80.5455,-21.2727 84.7273,-21.4545 93.2727,-21.4545 98.5455,-21.6364 103.818,-21.4545 107.818,-21.6364 108.727,-21.0909 109.636,-18.1818 110.364,-12.5455 110.364,-8 110.545,-5.45455 110.182,-1.09091 110,0.181818"/>
   </object>
-  <object id="179" type="person" x="230.5" y="880.25" width="10" height="10">
+  <object id="249" x="478.273" y="858.455" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="180" type="person" x="233.25" y="867.5" width="10" height="10">
+  <object id="250" x="500.273" y="857" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="181" type="person" x="236.75" y="854.25" width="10" height="10">
+  <object id="251" x="534.091" y="859" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="182" type="person" x="261" y="857.25" width="10" height="10">
+  <object id="252" x="517.727" y="858.455" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="183" type="person" x="248.75" y="859.5" width="10" height="10">
+  <object id="253" x="459.364" y="877.182" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="184" type="person" x="266" y="845.5" width="10" height="10">
+  <object id="254" x="405.182" y="824.818" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="185" type="person" x="247" y="844.5" width="10" height="10">
+  <object id="255" x="390.273" y="825.364" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="186" type="person" x="261.5" y="827.75" width="10" height="10">
+  <object id="256" x="373" y="843" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="187" type="person" x="247.25" y="833" width="10" height="10">
+  <object id="257" x="406.364" y="855.273">
    <properties>
-    <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="class" value="com.mygdx.game.test.RailHandler"/>
+    <property name="polyline" value="{this}"/>
    </properties>
-   <ellipse/>
+   <polyline points="0,0 2.90909,0.181818 6.72727,-0.545455 13.8182,-0.909091 16.5455,-1.27273 21.6364,-1.45455 24.3636,-1.45455 30.9091,-1.63636 36.5455,-0.545455 42.1818,-0.181818 44.7273,-0.181818 51.4545,-1.09091 59.2727,-1.81818 66.9091,-1.81818 68.1818,-1.63636 70.3636,-0.909091 71.4545,-0.909091 77.4545,-0.909091"/>
   </object>
-  <object id="188" type="person" x="237.5" y="824.25" width="10" height="10">
+  <object id="258" x="404.273" y="840.091" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="189" type="person" x="251.75" y="816.75" width="10" height="10">
+  <object id="259" x="416.818" y="843.909" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="190" type="person" x="235.25" y="839.75" width="10" height="10">
+  <object id="260" x="429" y="841.727" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="191" type="person" x="218.75" y="843.5" width="10" height="10">
+  <object id="261" x="441.545" y="839.727" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="192" type="person" x="218.75" y="830" width="10" height="10">
+  <object id="262" x="456.636" y="838.818" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="193" type="person" x="202.25" y="841.25" width="10" height="10">
+  <object id="263" x="466.818" y="849.727" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="194" type="person" x="225.25" y="855.5" width="10" height="10">
+  <object id="264" x="454.818" y="857.727" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="195" type="person" x="220.25" y="864.25" width="10" height="10">
+  <object id="265" x="439.909" y="861.909" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="196" type="person" x="208.75" y="862.5" width="10" height="10">
+  <object id="266" x="428.091" y="858.636" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="197" type="person" x="210.25" y="853" width="10" height="10">
+  <object id="267" x="413" y="860.636" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
-  <object id="198" type="person" x="193.75" y="852.75" width="10" height="10">
+  <object id="268" x="399.727" y="857.364" width="10" height="10">
    <properties>
     <property name="class" value="com.mygdx.game.test.Person"/>
-    <property name="constructorFields" type="int" value="6"/>
-    <property name="field1" value="com.badlogic.gdx.physics.box2d.World"/>
-    <property name="field2" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="field4" value="com.badlogic.gdx.math.Vector2"/>
-    <property name="field5" value="com.mygdx.game.states.State"/>
-    <property name="field6" value="java.lang.Boolean"/>
-    <property name="fieldValue1" value="{world}"/>
-    <property name="fieldValue2" value="{center}"/>
-    <property name="fieldValue3" type="float" value="300"/>
-    <property name="fieldValue4" value="{size}"/>
-    <property name="fieldValue5" value="{state}"/>
-    <property name="fieldValue6" type="bool" value="false"/>
-    <property name="render" type="bool" value="true"/>
+    <property name="position" value="{center}"/>
+    <property name="strength" type="float" value="500"/>
    </properties>
    <ellipse/>
   </object>
@@ -1473,106 +208,19 @@
   <object id="108" type="object" x="643.5" y="813" width="68.5" height="4.75"/>
   <object id="109" type="object" x="643.25" y="890.5" width="68.25" height="5"/>
   <object id="110" type="object" x="707.25" y="813.5" width="5" height="82"/>
+  <object id="234" type="object" x="291.622" y="866.074" width="3.25" height="24.5"/>
+  <object id="235" type="object" x="313.747" y="866.574" width="3.25" height="24.5"/>
+  <object id="236" type="object" x="337.497" y="866.324" width="3.25" height="24.5"/>
+  <object id="237" type="object" x="359.747" y="866.824" width="3.25" height="24.5"/>
+  <object id="238" type="object" x="381.747" y="867.324" width="3.25" height="24.5"/>
+  <object id="239" type="object" x="493.185" y="819.449" width="3.25" height="24.5"/>
+  <object id="240" type="object" x="515.31" y="819.949" width="3.25" height="24.5"/>
+  <object id="241" type="object" x="539.06" y="819.699" width="3.25" height="24.5"/>
+  <object id="242" type="object" x="561.31" y="820.199" width="3.25" height="24.5"/>
+  <object id="243" type="object" x="583.31" y="820.699" width="3.25" height="24.5"/>
  </objectgroup>
- <objectgroup name="Trail" locked="1">
-  <object id="100" gid="191" x="160" y="900" width="558" height="97"/>
-  <object id="111" type="trail" x="294" y="819">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.RailHandler"/>
-    <property name="constructorFields" type="int" value="3"/>
-    <property name="field1" value="com.badlogic.gdx.maps.MapObject"/>
-    <property name="field2" value="com.mygdx.game.states.State"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="fieldValue1" value="{this}"/>
-    <property name="fieldValue2" value="{state}"/>
-    <property name="fieldValue3" value="{scale}"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <polyline points="0,0 0,7 -0.25,13.5 1,17.25 0.75,21.5 5,20.75 9.5,20.25 17.75,21.75 34.75,22 39.25,21.5 53.75,21.5 58,21.5 71.25,21.5 81.25,22.25 94.5,21.75 100.75,21.5 108.25,22 110.5,19.25 110.5,11 110.25,2.75 109.5,-0.75"/>
-  </object>
-  <object id="121" type="trail" x="173.5" y="855.75">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.RailHandler"/>
-    <property name="constructorFields" type="int" value="3"/>
-    <property name="field1" value="com.badlogic.gdx.maps.MapObject"/>
-    <property name="field2" value="com.mygdx.game.states.State"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="fieldValue1" value="{this}"/>
-    <property name="fieldValue2" value="{state}"/>
-    <property name="fieldValue3" value="{scale}"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <polyline points="0,0 4.5,-1.75 7.75,-1.25 14.75,-1 23.75,-1 30.5,-1 32,-1 35.75,-1 43.25,-1 47.25,-1 52.5,-1 57.5,-0.5 60.75,-0.5 66,-1 81.75,-1 84,-1 92,-1 94.25,-1 98.25,-1 104,-1 107.5,-1 110.25,-0.75 113.25,-0.5 119.5,-0.5 124.5,-0.25 130.25,-0.5 138.75,-0.5 142,-1.25 147,-2.25 151.75,-2.5 156,-1.75 166,-1 172,-1 180,-1 187.25,-1 194.5,-0.25 202.75,-0.25 204.5,-0.25 219.25,-0.25 223.5,-0.25 227.25,-0.5 229.75,-0.5 231.25,-0.5 240.25,-0.5 242.25,-0.75 252.25,-0.75 259.25,-1 263.25,-1 265,-1 270.5,0.25 272.75,0 281.5,0 289.75,-0.25 294,-1.25 297.5,-1.5 299.75,-1.5 302.25,-2 309.5,-0.25 311.25,-0.5 319,0 321.25,0.5 325.5,-0.25 328,-0.25 342,-0.25 344.5,-0.75 353.75,-0.75 356.25,-1.5 363.5,-1.5 364,-1.5 368.75,-1.75 369.5,-1.75 376.25,-0.75 384.75,0.25 389.75,0.25 394.75,0 407.25,0 408.5,-0.25 414.75,-1.25 422.75,-0.75 427,-0.5 436.5,-1 444,-1 452,-1.5 458.75,-1.5 461.75,-1.25 467.25,-1.25 469.25,-1.25 484.25,-1.25 486.5,-1.5 493.5,-2.25 499.25,-2.25 505.5,-1 506.25,-1 514.25,-0.25 518.25,0 521.25,-0.25 523.5,-0.75 526.5,-0.75 528.25,-0.75 531,-0.75 532.25,-1"/>
-  </object>
-  <object id="122" type="trail" x="173.25" y="839.5">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.RailHandler"/>
-    <property name="constructorFields" type="int" value="3"/>
-    <property name="field1" value="com.badlogic.gdx.maps.MapObject"/>
-    <property name="field2" value="com.mygdx.game.states.State"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="fieldValue1" value="{this}"/>
-    <property name="fieldValue2" value="{state}"/>
-    <property name="fieldValue3" value="{scale}"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <polyline points="0,0 2.25,1.25 7.5,1.75 13.25,-0.5 17.75,0 24.5,0 29.25,0.5 33.75,1.5 39.5,1.5 42.5,1 47.25,0.5 50.75,0.5 53.5,0.5 54.75,0.5 55.5,-0.25 56.25,-3.75 56.5,-7.5 57,-13.25 57.25,-16.25 57.25,-18.25 56.75,-20.5"/>
-  </object>
-  <object id="123" type="trail" x="173" y="867.25">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.RailHandler"/>
-    <property name="constructorFields" type="int" value="3"/>
-    <property name="field1" value="com.badlogic.gdx.maps.MapObject"/>
-    <property name="field2" value="com.mygdx.game.states.State"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="fieldValue1" value="{this}"/>
-    <property name="fieldValue2" value="{state}"/>
-    <property name="fieldValue3" value="{scale}"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <polyline points="0,0 2.25,1.25 8.25,-0.25 14,-0.25 17.5,1 24.25,1.5 34.25,1.5 38.5,1.5 44,0 45.75,0 49.5,0 54,-0.75 56,1.5 57.25,4.75 57.5,10.5 57.5,15.5 57,19.5 57,19.75"/>
-  </object>
-  <object id="125" type="trail" x="470.25" y="888">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.RailHandler"/>
-    <property name="constructorFields" type="int" value="3"/>
-    <property name="field1" value="com.badlogic.gdx.maps.MapObject"/>
-    <property name="field2" value="com.mygdx.game.states.State"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="fieldValue1" value="{this}"/>
-    <property name="fieldValue2" value="{state}"/>
-    <property name="fieldValue3" value="{scale}"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <polyline points="0,0 1.25,-4.75 1.25,-6 0.5,-11 0.5,-13.25 0.5,-15.75 1,-18.5 2.25,-19.25 3.25,-19.75 5.75,-20.25 9.25,-20.25 13.25,-20.25 17.25,-20.25 20,-20.75 23.75,-21 30.25,-21.5 34.75,-21.5 40.25,-20.75 47,-19.75 47.75,-19.75 54.25,-19.75 57.75,-20.25 59,-20.25 65,-20.75 68,-21 71,-21 76.25,-21.25 77.75,-21.25 84.75,-20.75 88.25,-20.75 102.5,-20.5 103,-20.5 104.5,-20.25 108,-19.75 110.5,-19 111.75,-16.25 112,-9.75 111.25,-7 111,-4 111.25,0.5"/>
-  </object>
-  <object id="126" type="trail" x="648.25" y="819.5">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.RailHandler"/>
-    <property name="constructorFields" type="int" value="3"/>
-    <property name="field1" value="com.badlogic.gdx.maps.MapObject"/>
-    <property name="field2" value="com.mygdx.game.states.State"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="fieldValue1" value="{this}"/>
-    <property name="fieldValue2" value="{state}"/>
-    <property name="fieldValue3" value="{scale}"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <polyline points="0,0 -0.75,2.25 -0.75,4.75 -0.5,7.75 -0.25,12.5 0,15.75 1.25,21 1.25,22.5 6.25,23.25 10.75,23 15,21.5 22.25,21 22.75,21 27.5,22 36.25,22 39.25,22 45.5,22 49.5,21.75 51.25,21.75 53.75,21.75 54.5,21.75 57.25,22"/>
-  </object>
-  <object id="127" type="trail" x="649.75" y="890">
-   <properties>
-    <property name="class" value="com.mygdx.game.test.RailHandler"/>
-    <property name="constructorFields" type="int" value="3"/>
-    <property name="field1" value="com.badlogic.gdx.maps.MapObject"/>
-    <property name="field2" value="com.mygdx.game.states.State"/>
-    <property name="field3" value="java.lang.Float"/>
-    <property name="fieldValue1" value="{this}"/>
-    <property name="fieldValue2" value="{state}"/>
-    <property name="fieldValue3" value="{scale}"/>
-    <property name="render" type="bool" value="true"/>
-   </properties>
-   <polyline points="0,0 -0.75,-3.25 -0.75,-5.5 -0.75,-8.25 -0.75,-11.25 -0.5,-15.75 -0.5,-18.75 0.75,-21.25 4.75,-22.25 9.5,-22.75 15,-21.5 21.75,-21.25 30,-21.25 34,-21.25 42,-20.75 45.75,-20.75 47.25,-20.75 52.5,-21.5 54.75,-21.5 57,-21.5"/>
-  </object>
+ <objectgroup name="TrailImage" locked="1">
+  <object id="202" type="image" gid="191" x="160" y="900" width="558" height="97"/>
  </objectgroup>
+ <objectgroup name="Trail"/>
 </map>

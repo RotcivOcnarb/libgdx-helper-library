@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.helper.Helper;
@@ -31,36 +32,37 @@ public class GameParticle extends GameObject{
 	
 	
 	
-	private GameParticle(Vector2 position) {
-		super(position);
+	private GameParticle(ObjectInfo info, Vector2 position) {
+		super(info, new MapProperties());
+		transform.setPosition(position.cpy());
 		layout = new GlyphLayout();
 		life = 1;
 		velocity = new Vector2(0, 0);
 		gravity = new Vector2(0, 0);
 	}
 
-	public GameParticle(Vector2 position, Texture texture) {
-		this(position);
+	public GameParticle(ObjectInfo info, Vector2 position, Texture texture) {
+		this(info, position);
 		setTexture(texture);
 	}
 	
-	public GameParticle(Vector2 position, String text, BitmapFont font, Color color) {
-		this(position);
+	public GameParticle(ObjectInfo info, Vector2 position, String text, BitmapFont font, Color color) {
+		this(info, position);
 		setText(text);
 		setTextLayout(font, color);
 	}
 	
-	public GameParticle(Vector2 position, String text, BitmapFont font, Color color, float life) {
-		this(position, text, font, color);
+	public GameParticle(ObjectInfo info, Vector2 position, String text, BitmapFont font, Color color, float life) {
+		this(info, position, text, font, color);
 		this.life = life;
 	}
 	
-	public GameParticle(Vector2 position, String text, BitmapFont font) {
-		this(position, text, font, Color.WHITE);
+	public GameParticle(ObjectInfo info, Vector2 position, String text, BitmapFont font) {
+		this(info, position, text, font, Color.WHITE);
 	}
 	
-	public GameParticle(Vector2 position, String text, BitmapFont font, float life) {
-		this(position, text, font, Color.WHITE);
+	public GameParticle(ObjectInfo info, Vector2 position, String text, BitmapFont font, float life) {
+		this(info, position, text, font, Color.WHITE);
 		this.life = life;
 	}
 	

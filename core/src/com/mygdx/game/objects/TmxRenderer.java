@@ -4,7 +4,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.function.Consumer;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -24,31 +26,28 @@ import com.mygdx.game.states.State;
 
 import net.dermetfan.gdx.physics.box2d.Box2DMapObjectParser;
 
-public class TmxRenderer extends GameObject{
+public class TmxRenderer{
 	
 	TiledMap tiledMap;
-	float scale;
 	Vector2 scaleVector;
 	Box2DMapObjectParser parser;
-	HashMap<Integer, InstancedObject> instancedObjects;
+	HashMap<Integer, GameObject> instancedObjects;
 	ArrayList<TmxInstancedKeyword> keywords;
-	State state;
+	ObjectInfo info;
 	
-	public TmxRenderer(State state, String mapPath, float scale) {
-		super(Vector2.Zero);
-		this.state = state;
-		parser = new Box2DMapObjectParser(scale/State.PHYS_SCALE);
-		instancedObjects = new HashMap<Integer, InstancedObject>();
+	public TmxRenderer(ObjectInfo info, String mapPath) {
+		this.info = info;
+		parser = new Box2DMapObjectParser(info.getScale()/State.PHYS_SCALE);
+		instancedObjects = new HashMap<Integer, GameObject>();
 		keywords = new ArrayList<TmxInstancedKeyword>();
 		loadDefaultKeywords();
-		this.scale = scale;
 		tiledMap = new TmxMapLoader().load(mapPath);
-		scaleVector = new Vector2(scale / State.PHYS_SCALE, scale / State.PHYS_SCALE);
+		scaleVector = new Vector2(info.getScale() / State.PHYS_SCALE, info.getScale() / State.PHYS_SCALE);
 		Iterator<MapLayer> layers = tiledMap.getLayers().iterator();
 		while(layers.hasNext()) {
 			MapLayer layer = layers.next();
 			
-			parser.load(state.getWorld(), layer);
+			parser.load(info.getState().getWorld(), layer);
 	
 			if(layer.getProperties().get("block") == null) continue;
 			if(layer.getProperties().get("block", Boolean.class)) {
@@ -62,10 +61,10 @@ public class TmxRenderer extends GameObject{
 						Cell cell = tileLayer.getCell(x, y);
 						if(cell != null) {
 							Vector2 pos = new Vector2(
-									(x * tileSize.x) * scale,
-									(y * tileSize.y) * scale
+									(x * tileSize.x) * info.getScale(),
+									(y * tileSize.y) * info.getScale()
 									);
-							state.addStaticRectangleBody(pos.cpy().add(tileSize.cpy().scl(1/2f)), tileSize.cpy().scl(scale));
+							info.getState().addStaticRectangleBody(pos.cpy().add(tileSize.cpy().scl(1/2f)), tileSize.cpy().scl(info.getScale()));
 						}
 					}
 					
@@ -74,110 +73,152 @@ public class TmxRenderer extends GameObject{
 		}
 	}
 	
+	public MapProperties trataProps(MapProperties props, MapObject mo, MapLayer layer) {
+			System.out.println("Tratando propriedades do objeto " + props.get("id"));
+			MapProperties newProps = new MapProperties();
+		
+			Iterator<String> it = props.getKeys();
+			while(it.hasNext()) {
+				String key = it.next();
+				System.out.println("\ttratando propriedade " + key);
+				
+				if(props.get(key) instanceof String) {
+				String value = props.get(key, String.class);
+				
+					for(TmxInstancedKeyword tik : keywords) {
+						if(value.startsWith(tik.getKeyword())) {
+							if(value.endsWith("_")) {
+								String objectName = value.split("_")[1];
+								Object nOb = tik.getObject(layer.getObjects().get(objectName));
+								if(nOb == null) {
+									System.err.println("Objeto referenciado no objeto de ID: " + props.get("id") + ", nome: \"" + objectName + "\" não foi encontrado na Camada atual ("+layer.getName()+"), tem certeza que esse objeto está na mesma layer?)");
+									Gdx.app.exit();
+								}
+								System.out.println("\t\tObjeto alternativo " + nOb);
+								newProps.put(key, nOb);
+								break;
+							}
+							else {
+								System.out.println("\t\tObjeto alterado " + tik.getObject(mo));
+								newProps.put(key, tik.getObject(mo));
+								break;
+							}
+						}
+						else {
+							System.out.println("\t\tObjeto inalterado " + value);
+							newProps.put(key, value);
+						}
+					}
+					
+				}
+				else {
+					
+					Object value = props.get(key);
+					
+					if(key.equals("x")) value = props.get("x", Float.class) * info.getScale();
+					if(key.equals("y")) value = props.get("y", Float.class) * info.getScale();
+					if(key.equals("width")) value = props.get("width", Float.class) * info.getScale();
+					if(key.equals("height")) value = props.get("height", Float.class) * info.getScale();
+					
+					System.out.println("\t\tObjeto padrão " + value);
+					
+					newProps.put(key, value);
+				}
+				
+				System.out.println("\t\tKey: " + key + ", value: " + newProps.get(key));
+				
+			}
+		
+		return newProps;
+	}
+	
+	public void instanceSingle(MapObject mo, MapLayer layer, int layerCount) {
+		
+		MapProperties props = mo.getProperties();
+		String objClass = props.get("class", String.class);
+			
+		
+			try {
+				//Pega a classe que vai ser instanciada
+				Class goClass = Class.forName(objClass);
+				
+				GameObject go = (GameObject) goClass.getConstructor(ObjectInfo.class, MapProperties.class).newInstance(
+						new ObjectInfo(info.getState(),
+								props.get("z") != null ? props.get("z", Integer.class) : layerCount,
+								info.getScale()
+								),
+						trataProps(props, mo, layer)
+						);
+				
+				info.getState().putInScene(go);
+				instancedObjects.put(mo.getProperties().get("id", Integer.class), go);
+				
+				
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		
+	}
+	
+	public void instanceImage(MapObject mo, MapLayer layer, int layerCount) {
+
+		ImageObject io = new ImageObject(new ObjectInfo(info.getState(), layerCount, info.getScale()), (TiledMapTileMapObject) mo);
+		info.getState().putInScene(io);
+		instancedObjects.put(mo.getProperties().get("id", Integer.class), io);
+
+		
+	}
+	
 	public void instanceObjects() {
 		Iterator<MapLayer> layers = tiledMap.getLayers().iterator();
+		int layerCount = 0;
 		while(layers.hasNext()) {
-			MapLayer layer = layers.next();
 			
-						
+			MapLayer layer = layers.next();
 			MapObjects mos = layer.getObjects();
 			
 			for(int k = 0; k < mos.getCount(); k ++) {
 				MapProperties props =  mos.get(k).getProperties();
-				
-				
+
 				String objClass = props.get("class", String.class);
 				if(objClass != null) {
-					
-					
-					try {
-						//Pega a classe que vai ser instanciada
-						Class goClass = Class.forName(objClass);
-						//Pega a quantidade de argumentos do construtor
-						int numFields = 0;
-						try {
-							numFields = props.get("constructorFields", Integer.class);
-						}catch(Exception e) {
-							System.err.println("Objeto " + props.get("id") + " tem propriedade numFields escrito errada");
-						}
-						//Pega todas as classes da cada argumento do construtor
-						Class constructorTypes[] = new Class[numFields];
-						for(int i = 0; i < numFields; i ++) {
-							constructorTypes[i] = Class.forName(props.get("field" + (i+1), String.class));
-						}
-						
-						
-						//Pega os valores dos argumentos pra serem passados
-						
-						//TODO: Fazer uma interface pra essa porra
-						
-						Object[] fields = new Object[numFields];
-						for(int i = 0; i < numFields; i ++) {
-							Object obj = null;
-							
-							boolean found = false;
-							
-							for(TmxInstancedKeyword tik : keywords) {
-								if(props.get("fieldValue" + (i+1)) instanceof String) {
-									if(props.get("fieldValue" + (i+1), String.class).startsWith(tik.getKeyword())) {
-										if(props.get("fieldValue" + (i+1), String.class).endsWith("_")) {
-											obj = tik.getObject(layer.getObjects().get(props.get("fieldValue" + (i+1), String.class).split("_")[1]));
-											found = true;
-											break;
-										}
-										else {
-											obj = tik.getObject(mos.get(k));
-											found = true;
-											break;
-										}
-									}
-								}
-							}
-							
-							if(!found)
-							obj = props.get("fieldValue" + (i+1));
-							
-							fields[i] = obj;
-						}
-						
-						GameObject go = (GameObject) goClass.getConstructor(constructorTypes).newInstance(fields);
-						state.putToUpdate(go);
-						instancedObjects.put(mos.get(k).getProperties().get("id", Integer.class), new InstancedObject(go, props.get("render") != null && props.get("render", Boolean.class)));
-						
-					} catch (InstantiationException e) {
-						e.printStackTrace();
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					} catch (ClassNotFoundException e) {
-						e.printStackTrace();
-					} catch (IllegalArgumentException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (InvocationTargetException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (NoSuchMethodException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (SecurityException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+					instanceSingle(mos.get(k), layer, layerCount);
 				}
-				
+				else if(mos.get(k) instanceof TiledMapTileMapObject){
+					instanceImage(mos.get(k), layer, layerCount);
+				}
 			}
+			
+			layerCount ++;
 		}
 	}
 	
 	public void loadDefaultKeywords() {
 		addKeywordInterpreter(new TmxInstancedKeyword("{world}") {
 			public Object getObject(MapObject mo) {
-				return state.getWorld();
+				return info.getState().getWorld();
 			}
 		});
 		addKeywordInterpreter(new TmxInstancedKeyword("{position}") {
 			public Object getObject(MapObject mo) {
-				return new Vector2(mo.getProperties().get("x", Float.class) * scale, mo.getProperties().get("y", Float.class) * scale);
+				return new Vector2(mo.getProperties().get("x", Float.class) * info.getScale(), mo.getProperties().get("y", Float.class) * info.getScale());
 			}
 		});
 		addKeywordInterpreter(new TmxInstancedKeyword("{rotation}") {
@@ -187,12 +228,12 @@ public class TmxRenderer extends GameObject{
 		});
 		addKeywordInterpreter(new TmxInstancedKeyword("{size}") {
 			public Object getObject(MapObject mo) {
-				return new Vector2(mo.getProperties().get("width", Float.class) * scale, mo.getProperties().get("height", Float.class) * scale);
+				return new Vector2(mo.getProperties().get("width", Float.class) * info.getScale(), mo.getProperties().get("height", Float.class) * info.getScale());
 			}
 		});
 		addKeywordInterpreter(new TmxInstancedKeyword("{state}") {
 			public Object getObject(MapObject mo) {
-				return state;
+				return info.getState();
 			}
 		});
 		addKeywordInterpreter(new TmxInstancedKeyword("{this}") {
@@ -202,7 +243,7 @@ public class TmxRenderer extends GameObject{
 		});
 		addKeywordInterpreter(new TmxInstancedKeyword("{scale}") {
 			public Object getObject(MapObject mo) {
-				return scale;
+				return info.getScale();
 			}
 		});
 		addKeywordInterpreter(new TmxInstancedKeyword("{null}") {
@@ -213,8 +254,8 @@ public class TmxRenderer extends GameObject{
 		addKeywordInterpreter(new TmxInstancedKeyword("{center}") {
 			public Object getObject(MapObject mo) {
 				return new Vector2(
-						(mo.getProperties().get("x", Float.class) + mo.getProperties().get("width", Float.class)/2) * scale,
-						(mo.getProperties().get("y", Float.class) + mo.getProperties().get("height", Float.class)/2) * scale
+						(mo.getProperties().get("x", Float.class) + mo.getProperties().get("width", Float.class)/2) * info.getScale(),
+						(mo.getProperties().get("y", Float.class) + mo.getProperties().get("height", Float.class)/2) * info.getScale()
 						);
 			}
 		});
@@ -226,13 +267,12 @@ public class TmxRenderer extends GameObject{
 	}
 	
 	public GameObject getInstancedObject(Integer i) {
-		return instancedObjects.get(i).object;
+		return instancedObjects.get(i);
 	}
 
 	Vector2 positionTemp = new Vector2(0, 0);
 	public void render(SpriteBatch sb, ShapeRenderer sr, OrthographicCamera camera) {
 
-		sb.begin();
 		for(int i = 0; i < tiledMap.getLayers().getCount(); i ++) {
 			MapLayer layer = tiledMap.getLayers().get(i);
 			
@@ -248,8 +288,8 @@ public class TmxRenderer extends GameObject{
 						Cell cell = tileLayer.getCell(x, y);
 						if(cell != null) {
 							positionTemp.set(
-									(x * tileSize.x) * scale / State.PHYS_SCALE,
-									(y * tileSize.y) * scale / State.PHYS_SCALE
+									(x * tileSize.x) * info.getScale() / State.PHYS_SCALE,
+									(y * tileSize.y) * info.getScale() / State.PHYS_SCALE
 									);
 							
 							
@@ -267,36 +307,6 @@ public class TmxRenderer extends GameObject{
 					
 				}
 			}
-			else {
-				MapObjects mos = layer.getObjects();
-				
-				//Desenha as imagens
-				for(int k = 0; k < mos.getCount(); k ++) {
-					if(mos.get(k) instanceof TiledMapTileMapObject) {
-						TiledMapTileMapObject imgObj = (TiledMapTileMapObject) mos.get(k);
-						
-						if(imgObj.getProperties().get("render") == null || imgObj.getProperties().get("render", Boolean.class) ) {
-								Helper.renderRegion(
-										sb,
-										imgObj.getTile().getTextureRegion(),
-										new Vector2(imgObj.getX(), imgObj.getY()).cpy().scl(scale/State.PHYS_SCALE),
-										360 - imgObj.getRotation(),
-										new Vector2(scale * imgObj.getScaleX() / State.PHYS_SCALE, scale * imgObj.getScaleY() / State.PHYS_SCALE),
-										imgObj.isFlipHorizontally(),
-										imgObj.isFlipVertically(),
-										new Vector2(scale * imgObj.getOriginX() / State.PHYS_SCALE, scale * imgObj.getOriginY() / State.PHYS_SCALE)
-										);
-						}
-					}
-				}
-			}
-		}
-		sb.end();
-		
-		for(Integer key : instancedObjects.keySet()) {
-			if(instancedObjects.get(key).render) {
-				instancedObjects.get(key).object.render(sb, sr, camera);
-			}
 		}
 	}
 	
@@ -308,7 +318,7 @@ public class TmxRenderer extends GameObject{
 				RectangleMapObject posObj = (RectangleMapObject) obj;
 				Vector2 position = new Vector2();
 				posObj.getRectangle().getPosition(position);
-				return position.scl(scale);
+				return position.scl(info.getScale());
 			}
 		}
 		
@@ -317,16 +327,6 @@ public class TmxRenderer extends GameObject{
 
 	public boolean update(float delta) {
 		return false;
-	}
-	
-	class InstancedObject{
-		GameObject object;
-		boolean render;
-		
-		public InstancedObject(GameObject object, boolean render) {
-			this.object = object;
-			this.render = render;
-		}
 	}
 
 }

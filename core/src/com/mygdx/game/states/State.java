@@ -1,6 +1,8 @@
 package com.mygdx.game.states;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.PovDirection;
@@ -28,7 +30,6 @@ public abstract class State{
 	StateManager manager;
 	ShapeRenderer sr;
 	OrthographicCamera camera;
-	ArrayList<GameParticle> particles;
 	ArrayList<GameObject> gos;
 	
 	//Física
@@ -51,10 +52,10 @@ public abstract class State{
 	}
 	
 	public void addParticle(GameParticle gp) {
-		particles.add(gp);
+		gos.add(gp);
 	}
 	
-	public void putToUpdate(GameObject go) {
+	public void putInScene(GameObject go) {
 		gos.add(go);
 	}
 	
@@ -65,7 +66,6 @@ public abstract class State{
 		camera.setToOrtho(false);
 		
 		forRemoval = new ArrayList<Body>();
-		particles = new ArrayList<GameParticle>();
 		gos = new ArrayList<GameObject>();
 	}
 	
@@ -101,8 +101,8 @@ public abstract class State{
 	public void postRender(SpriteBatch sb) {
 		
 		sb.begin();
-		for(int i = particles.size() -1; i >= 0; i --) {
-			particles.get(i).render(sb, sr, camera);
+		for(int i = gos.size() - 1; i>= 0; i --) {
+			gos.get(i).render(sb, sr, camera);
 		}
 		sb.end();
 		
@@ -116,8 +116,16 @@ public abstract class State{
 	public void preUpdate(float delta) {
 		camera.update();
 		
+		Collections.sort(gos, new Comparator<GameObject>() {
+			public int compare(GameObject arg0, GameObject arg1) {
+				return arg1.getZ() - arg0.getZ();
+			}
+		});
+		
 		for(int i = gos.size() - 1; i>= 0; i --) {
-			gos.get(i).update(delta);
+			if(gos.get(i).update(delta)) {
+				gos.remove(i);
+			}
 		}
 		
 		if(getWorld() != null) {
@@ -129,15 +137,6 @@ public abstract class State{
 				
 				getWorld().step(1/60f, 6, 2);
 			}
-		}
-		
-		
-		for(int i = particles.size() -1; i >= 0; i --) {
-			if(particles.get(i).update(delta)) {
-				particles.remove(i);
-			}
-			
-
 		}
 	}
 	
@@ -281,6 +280,10 @@ public abstract class State{
 
 	public void setWorld(World world) {
 		this.world = world;
+	}
+
+	public OrthographicCamera getCamera() {
+		return camera;
 	}
 	
 }

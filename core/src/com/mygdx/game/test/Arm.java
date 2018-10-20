@@ -6,9 +6,11 @@ import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.helper.Game;
 import com.mygdx.game.objects.GameObject;
+import com.mygdx.game.objects.ObjectInfo;
 import com.mygdx.game.states.State;
 
 public class Arm extends GameObject{
@@ -23,11 +25,11 @@ public class Arm extends GameObject{
 	
 	float angle;
 	
-	public Arm(Vector2 start, Vector2 end) {
-		super(Vector2.Zero);
+	public Arm(ObjectInfo info, MapProperties properties) {
+		super(info, properties);
 		
-		armStart = start;
-		armEnd = end;
+		armStart = get("armEnd", Vector2.class);
+		armEnd = get("armStart", Vector2.class);
 		
 		length = armEnd.cpy().sub(armStart).len() / scale;
 		
@@ -43,7 +45,6 @@ public class Arm extends GameObject{
 	
 		
 		
-		sb.begin();
 		
 			sb.draw(
 					arm,
@@ -85,7 +86,6 @@ public class Arm extends GameObject{
 					false
 					);
 		
-		sb.end();
 		
 		
 	}

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.helper.Game;
 import com.mygdx.game.helper.Helper;
@@ -16,10 +17,10 @@ public class ParallaxBackground extends GameObject{
 	Texture texture;
 	OrthographicCamera camera;
 			
-	public ParallaxBackground(String imagePath) {
-		super(new Vector2(0, 0));
+	public ParallaxBackground(ObjectInfo info, MapProperties properties) {
+		super(info, properties);
 		
-		texture = new Texture(imagePath);
+		texture = new Texture(get("imgPath", String.class));
 		texture.setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
 	}
 

@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -19,9 +20,40 @@ import com.mygdx.game.structs.Transform;
 public abstract class GameObject {
 	
 	protected Transform transform;
+	protected ObjectInfo info;
+	protected MapProperties properties;
 	
-	public GameObject(Vector2 position) {
-		transform = new Transform(position.cpy());
+	public <T> T get(String key, Class<T> cls) {
+		return properties.get(key, cls);
+	}
+	
+	public Object get(String key) {
+		return properties.get(key);
+	}
+	
+	public GameObject(ObjectInfo info, MapProperties properties) {
+		this.info = info;
+		this.properties = properties;
+		
+		if(get("position", Vector2.class) != null)
+			transform = new Transform(get("position", Vector2.class));
+		else
+			transform = new Transform(Vector2.Zero.cpy());
+	}
+	
+	public GameObject(ObjectInfo info, MapProperties properties, boolean withPhysics) {
+		this.info = info;
+		this.properties = properties;
+		
+		if(!withPhysics) {
+			if(get("position", Vector2.class) != null)
+				transform = new Transform(get("position", Vector2.class));
+			else
+				transform = new Transform(Vector2.Zero.cpy());
+		}
+		else {
+			transform = new Transform(Vector2.Zero.cpy());
+		}
 	}
 	
 	public abstract void render(SpriteBatch sb, ShapeRenderer sr, OrthographicCamera camera);
@@ -113,6 +145,26 @@ public abstract class GameObject {
 	
 	public void setAngle(float angle) {
 		transform.setAngle(angle);
+	}
+
+	public int getZ() {
+		return info.getZ();
+	}
+
+	public void setZ(int z) {
+		this.info.setZ(z);
+	}
+	
+	public State getState() {
+		return info.getState();
+	}
+	
+	public float getScale() {
+		return info.getScale();
+	}
+	
+	public void setScale(float scale) {
+		info.scale = scale;
 	}
 
 	public boolean keyDown(int keycode) {
