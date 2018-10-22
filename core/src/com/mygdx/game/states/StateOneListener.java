@@ -3,10 +3,9 @@ package com.mygdx.game.states;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.mygdx.game.helper.Position;
+import com.mygdx.game.objects.EmptyContact;
 import com.mygdx.game.objects.PlatformPlayer;
-import com.mygdx.game.phys.EmptyContact;
-import com.mygdx.game.test.Arm;
+import com.mygdx.game.test.Person;
 
 public class StateOneListener extends EmptyContact{
 
@@ -18,6 +17,10 @@ public class StateOneListener extends EmptyContact{
 	public void beginContact(Contact contact) {
 		PlatformPlayer.beginContact(contact, this);
 		
+		if(compareCollision(contact, Person.class, Person.class)) {
+			contact.setEnabled(false);
+		}
+		
 	}
 
 	public void endContact(Contact contact) {
@@ -25,7 +28,10 @@ public class StateOneListener extends EmptyContact{
 	}
 
 	public void preSolve(Contact contact, Manifold oldManifold) {
-		
+
+		if(compareCollision(contact, Person.class, Person.class)) {
+			contact.setEnabled(false);
+		}
 	}
 
 	public void postSolve(Contact contact, ContactImpulse impulse) {

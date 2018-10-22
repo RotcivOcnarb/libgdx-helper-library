@@ -9,8 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.game.phys.PhysHelp;
+import com.mygdx.game.helper.Helper;
 import com.mygdx.game.states.State;
 
 public abstract class TopDownPlayer extends GameObject{
@@ -31,8 +30,12 @@ public abstract class TopDownPlayer extends GameObject{
 		BodyDef def = new BodyDef();
 		def.type = BodyType.DynamicBody;
 		def.fixedRotation = true;
-		def.position.set(get("position", Vector2.class).cpy().scl(1/State.PHYS_SCALE));
-		body = PhysHelp.creatCircleBody(getState().getWorld(), get("width", Float.class)/2f, def);
+		Vector2 position = new Vector2(
+				get("x", Float.class) + get("width", Float.class) / 2f,
+				get("y", Float.class) + get("height", Float.class) / 2f);
+		
+		def.position.set(position.scl(1/State.PHYS_SCALE));
+		body = Helper.PhysHelp.creatCircleBody(getState().getWorld(), get("width", Float.class)/2f, def);
 		body.setUserData(this);
 		input = new Vector2();
 	}

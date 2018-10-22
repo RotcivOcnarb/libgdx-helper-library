@@ -1,18 +1,15 @@
 package com.mygdx.game.test;
 
-import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.objects.GameObject;
 import com.mygdx.game.objects.ObjectInfo;
-import com.mygdx.game.states.State;
 import com.mygdx.game.states.StateOne;
 
 public class RailHandler extends GameObject{
@@ -21,7 +18,6 @@ public class RailHandler extends GameObject{
 	public RailHandler(ObjectInfo info, MapProperties properties) {
 		super(info, properties);
 		
-		System.out.println("RAILD: " + get("polyline"));
 		PolylineMapObject pmo = (PolylineMapObject) get("polyline", MapObject.class);
 		
 		float[] verts = pmo.getPolyline().getTransformedVertices();
@@ -40,6 +36,16 @@ public class RailHandler extends GameObject{
 
 	public boolean update(float delta) {
 		return false;
+	}
+
+	public void dispose() {
+		
+	}
+
+	@Override
+	public void create() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

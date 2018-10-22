@@ -8,14 +8,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.helper.Game;
 import com.mygdx.game.helper.Helper;
-import com.mygdx.game.states.State;
 
 public class ParallaxBackground extends GameObject{
 
 	Texture texture;
-	OrthographicCamera camera;
 			
 	public ParallaxBackground(ObjectInfo info, MapProperties properties) {
 		super(info, properties);
@@ -26,7 +23,6 @@ public class ParallaxBackground extends GameObject{
 
 	public void render(SpriteBatch sb, ShapeRenderer sr, OrthographicCamera camera) {
 		Helper.enableBlend();
-		this.camera = camera;
 		
 		sb.begin();
 		sb.setProjectionMatrix(Helper.getDefaultProjection());
@@ -56,9 +52,21 @@ public class ParallaxBackground extends GameObject{
 	}
 
 	public boolean update(float delta) {
-		if(camera != null)
-		transform.setPosition(new Vector2(camera.position.x, camera.position.y));
+		if(getCamera() != null)
+		transform.setPosition(new Vector2(getCamera().position.x, getCamera().position.y));
 		return false;
+	}
+
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void create() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

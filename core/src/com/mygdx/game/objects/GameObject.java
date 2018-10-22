@@ -1,18 +1,22 @@
 package com.mygdx.game.objects;
 
+import java.util.HashMap;
+
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.PovDirection;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.mygdx.game.helper.Game;
 import com.mygdx.game.helper.Helper;
 import com.mygdx.game.states.State;
 import com.mygdx.game.structs.Transform;
@@ -22,6 +26,21 @@ public abstract class GameObject {
 	protected Transform transform;
 	protected ObjectInfo info;
 	protected MapProperties properties;
+	protected boolean render = true;
+	
+	ShaderProgram shader;
+	HashMap<String, Object> uniforms;
+	
+	public abstract void create();
+	public abstract void dispose();
+	
+	public boolean isRendering() {
+		return render;
+	}
+	
+	public void setToRender(boolean render) {
+		this.render = render;
+	}
 	
 	public <T> T get(String key, Class<T> cls) {
 		return properties.get(key, cls);
@@ -31,19 +50,19 @@ public abstract class GameObject {
 		return properties.get(key);
 	}
 	
+	public OrthographicCamera getCamera() {
+		return info.getState().getCamera();
+	}
+	
 	public GameObject(ObjectInfo info, MapProperties properties) {
-		this.info = info;
-		this.properties = properties;
-		
-		if(get("position", Vector2.class) != null)
-			transform = new Transform(get("position", Vector2.class));
-		else
-			transform = new Transform(Vector2.Zero.cpy());
+		this(info, properties, false);
 	}
 	
 	public GameObject(ObjectInfo info, MapProperties properties, boolean withPhysics) {
 		this.info = info;
 		this.properties = properties;
+		
+		uniforms = new HashMap<String, Object>();
 		
 		if(!withPhysics) {
 			if(get("position", Vector2.class) != null)
@@ -56,7 +75,58 @@ public abstract class GameObject {
 		}
 	}
 	
+	public void setShader(String fragmentPath) {
+		shader = new ShaderProgram(Gdx.files.internal("shaders/default.vs"), Gdx.files.internal(fragmentPath));
+		ShaderProgram.pedantic = false;
+		
+		if(shader.getLog().length() > 0) {
+			System.err.println(shader.getLog());
+			Gdx.app.exit();
+		}
+	}
+	
+	public void setUniformf(String uniformName, float value) {
+		uniforms.put(uniformName, value);
+	}
+	
+	public void setShaderTexture(Texture tex) {
+		uniforms.put("u_texture", tex);
+	}
+	
+	public void preRender(SpriteBatch sb, ShapeRenderer sr, OrthographicCamera camera) {
+		if(shader != null) {
+
+			
+			shader.begin();
+			
+			for(String uni : uniforms.keySet()) {
+				if(uniforms.get(uni) instanceof Float) {
+					shader.setUniformf(uni, (Float)uniforms.get(uni));
+				}
+				else if(uniforms.get(uni) instanceof Texture) {
+					Gdx.graphics.getGL20().glActiveTexture(GL20.GL_TEXTURE0);
+					((Texture)uniforms.get(uni)).bind(0);
+					shader.setUniformi(uni, 0);
+				}
+			}
+			
+			sb.setShader(shader);
+			
+		}
+	}
+	
 	public abstract void render(SpriteBatch sb, ShapeRenderer sr, OrthographicCamera camera);
+	
+	public void postRender(SpriteBatch sb, ShapeRenderer sr, OrthographicCamera camera) {
+		if(shader != null) {
+			
+			
+			sb.setShader(null);
+			shader.end();
+
+		}
+	}
+	
 	public abstract boolean update(float delta);
 	
 	protected void renderRegion(SpriteBatch sb, TextureRegion region) {
@@ -68,7 +138,7 @@ public abstract class GameObject {
 	}
 	
 	protected void renderAnimationBody(SpriteBatch sb, Animation<TextureRegion> animation, Body body, float timer, boolean flipX, boolean flipY) {
-		TextureRegion region = animation.getKeyFrame(Game.globalTimer);
+		TextureRegion region = animation.getKeyFrame(Helper.Game.globalTimer);
 		
 		renderBodyRegion(sb, region, body, flipX, flipY);
 	}
@@ -110,6 +180,9 @@ public abstract class GameObject {
 	 */
 	protected void renderBodyTexture(SpriteBatch sb, Texture texture, Body body) {
 		renderBodyTexture(sb, texture, body, false, false);
+	}
+	protected void renderBodyTexture(SpriteBatch sb, Texture texture, Body body, Transform customTransform) {
+		Helper.renderTex(sb, texture, body.getWorldCenter().add(customTransform.getPosition()), (float)Math.toDegrees(body.getAngle()) + customTransform.getAngle(), customTransform.getScale().cpy().scl(1/State.PHYS_SCALE), false, false);
 	}
 	/**Renders the texture to match the body transform (except scale). The transform of the object is used as a relative transform
 	 * (if you want to draw at the exact center, be sure to set the transform position to (0, 0)

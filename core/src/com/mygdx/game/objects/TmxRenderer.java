@@ -4,7 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.function.Consumer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -28,7 +27,7 @@ import net.dermetfan.gdx.physics.box2d.Box2DMapObjectParser;
 
 public class TmxRenderer{
 	
-	TiledMap tiledMap;
+	private TiledMap tiledMap;
 	Vector2 scaleVector;
 	Box2DMapObjectParser parser;
 	HashMap<Integer, GameObject> instancedObjects;
@@ -41,9 +40,9 @@ public class TmxRenderer{
 		instancedObjects = new HashMap<Integer, GameObject>();
 		keywords = new ArrayList<TmxInstancedKeyword>();
 		loadDefaultKeywords();
-		tiledMap = new TmxMapLoader().load(mapPath);
+		setTiledMap(new TmxMapLoader().load(mapPath));
 		scaleVector = new Vector2(info.getScale() / State.PHYS_SCALE, info.getScale() / State.PHYS_SCALE);
-		Iterator<MapLayer> layers = tiledMap.getLayers().iterator();
+		Iterator<MapLayer> layers = getTiledMap().getLayers().iterator();
 		while(layers.hasNext()) {
 			MapLayer layer = layers.next();
 			
@@ -74,13 +73,11 @@ public class TmxRenderer{
 	}
 	
 	public MapProperties trataProps(MapProperties props, MapObject mo, MapLayer layer) {
-			System.out.println("Tratando propriedades do objeto " + props.get("id"));
 			MapProperties newProps = new MapProperties();
 		
 			Iterator<String> it = props.getKeys();
 			while(it.hasNext()) {
 				String key = it.next();
-				System.out.println("\ttratando propriedade " + key);
 				
 				if(props.get(key) instanceof String) {
 				String value = props.get(key, String.class);
@@ -91,21 +88,17 @@ public class TmxRenderer{
 								String objectName = value.split("_")[1];
 								Object nOb = tik.getObject(layer.getObjects().get(objectName));
 								if(nOb == null) {
-									System.err.println("Objeto referenciado no objeto de ID: " + props.get("id") + ", nome: \"" + objectName + "\" não foi encontrado na Camada atual ("+layer.getName()+"), tem certeza que esse objeto está na mesma layer?)");
 									Gdx.app.exit();
 								}
-								System.out.println("\t\tObjeto alternativo " + nOb);
 								newProps.put(key, nOb);
 								break;
 							}
 							else {
-								System.out.println("\t\tObjeto alterado " + tik.getObject(mo));
 								newProps.put(key, tik.getObject(mo));
 								break;
 							}
 						}
 						else {
-							System.out.println("\t\tObjeto inalterado " + value);
 							newProps.put(key, value);
 						}
 					}
@@ -120,12 +113,10 @@ public class TmxRenderer{
 					if(key.equals("width")) value = props.get("width", Float.class) * info.getScale();
 					if(key.equals("height")) value = props.get("height", Float.class) * info.getScale();
 					
-					System.out.println("\t\tObjeto padrão " + value);
 					
 					newProps.put(key, value);
 				}
 				
-				System.out.println("\t\tKey: " + key + ", value: " + newProps.get(key));
 				
 			}
 		
@@ -140,8 +131,10 @@ public class TmxRenderer{
 		
 			try {
 				//Pega a classe que vai ser instanciada
+				@SuppressWarnings("rawtypes")
 				Class goClass = Class.forName(objClass);
 				
+				@SuppressWarnings("unchecked")
 				GameObject go = (GameObject) goClass.getConstructor(ObjectInfo.class, MapProperties.class).newInstance(
 						new ObjectInfo(info.getState(),
 								props.get("z") != null ? props.get("z", Integer.class) : layerCount,
@@ -161,16 +154,15 @@ public class TmxRenderer{
 			} catch (ClassNotFoundException e) {
 				e.printStackTrace();
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.err.println("Erro ao tentar instanciar objeto da classe " + objClass);
+				e.getTargetException().printStackTrace();
+		
+				Gdx.app.exit();
 			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
@@ -179,7 +171,7 @@ public class TmxRenderer{
 	
 	public void instanceImage(MapObject mo, MapLayer layer, int layerCount) {
 
-		ImageObject io = new ImageObject(new ObjectInfo(info.getState(), layerCount, info.getScale()), (TiledMapTileMapObject) mo);
+		TiledImageObject io = new TiledImageObject(new ObjectInfo(info.getState(), layerCount, info.getScale()), (TiledMapTileMapObject) mo);
 		info.getState().putInScene(io);
 		instancedObjects.put(mo.getProperties().get("id", Integer.class), io);
 
@@ -187,7 +179,7 @@ public class TmxRenderer{
 	}
 	
 	public void instanceObjects() {
-		Iterator<MapLayer> layers = tiledMap.getLayers().iterator();
+		Iterator<MapLayer> layers = getTiledMap().getLayers().iterator();
 		int layerCount = 0;
 		while(layers.hasNext()) {
 			
@@ -207,6 +199,10 @@ public class TmxRenderer{
 			}
 			
 			layerCount ++;
+		}
+		
+		for(int g : instancedObjects.keySet()) {
+			instancedObjects.get(g).create();
 		}
 	}
 	
@@ -273,8 +269,8 @@ public class TmxRenderer{
 	Vector2 positionTemp = new Vector2(0, 0);
 	public void render(SpriteBatch sb, ShapeRenderer sr, OrthographicCamera camera) {
 
-		for(int i = 0; i < tiledMap.getLayers().getCount(); i ++) {
-			MapLayer layer = tiledMap.getLayers().get(i);
+		for(int i = 0; i < getTiledMap().getLayers().getCount(); i ++) {
+			MapLayer layer = getTiledMap().getLayers().get(i);
 			
 			if(layer instanceof TiledMapTileLayer) {
 				
@@ -311,8 +307,8 @@ public class TmxRenderer{
 	}
 	
 	public Vector2 getPositionFromObject(String objectName) {
-		for(int i = 0; i < tiledMap.getLayers().getCount(); i ++) {
-			MapLayer layer = tiledMap.getLayers().get(i);
+		for(int i = 0; i < getTiledMap().getLayers().getCount(); i ++) {
+			MapLayer layer = getTiledMap().getLayers().get(i);
 			MapObject obj = layer.getObjects().get(objectName);
 			if(obj != null) {
 				RectangleMapObject posObj = (RectangleMapObject) obj;
@@ -327,6 +323,14 @@ public class TmxRenderer{
 
 	public boolean update(float delta) {
 		return false;
+	}
+
+	public TiledMap getTiledMap() {
+		return tiledMap;
+	}
+
+	public void setTiledMap(TiledMap tiledMap) {
+		this.tiledMap = tiledMap;
 	}
 
 }

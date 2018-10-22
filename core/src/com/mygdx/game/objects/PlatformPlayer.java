@@ -8,8 +8,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.Fixture;
-import com.mygdx.game.phys.EmptyContact;
-import com.mygdx.game.phys.PhysHelp;
+import com.mygdx.game.helper.Helper;
 import com.mygdx.game.states.State;
 
 public abstract class PlatformPlayer extends GameObject{
@@ -33,8 +32,8 @@ public abstract class PlatformPlayer extends GameObject{
 		def.position.set(get("position", Vector2.class).cpy().scl(1/State.PHYS_SCALE));
 		def.type = BodyType.DynamicBody;
 		def.fixedRotation = true;
-		body = PhysHelp.createBoxBody(getState().getWorld(), get("size", Vector2.class), def);
-		Fixture foot = PhysHelp.createCircleFixture(body, new Vector2(0, -get("size", Vector2.class).y/2f), get("size", Vector2.class).x/2f);
+		body = Helper.PhysHelp.createBoxBody(getState().getWorld(), get("size", Vector2.class), def);
+		Fixture foot = Helper.PhysHelp.createCircleFixture(body, new Vector2(0, -get("size", Vector2.class).y/2f), get("size", Vector2.class).x/2f);
 		foot.setUserData("PLAYER_FOOT");
 		body.setUserData(this);
 		setJumpStrength(20);

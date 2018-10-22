@@ -5,10 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.helper.Game;
 import com.mygdx.game.objects.GameObject;
 import com.mygdx.game.objects.ObjectInfo;
 import com.mygdx.game.states.State;
@@ -32,7 +30,20 @@ public class Arm extends GameObject{
 		armEnd = get("armStart", Vector2.class);
 		
 		length = armEnd.cpy().sub(armStart).len() / scale;
+		angle = armEnd.cpy().sub(armStart).angle();
 		
+		hand = new Texture("arm/hand.png");
+		arm = new Texture("arm/arm.png");
+		arm.setWrap(TextureWrap.Repeat, TextureWrap.Repeat);
+	}
+	
+	public Arm(ObjectInfo info, Vector2 armStart, Vector2 armEnd) {
+		super(info, new MapProperties());
+		
+		this.armStart = armStart.cpy();
+		this.armEnd = armEnd.cpy();
+		
+		length = armEnd.cpy().sub(armStart).len() / scale;
 		angle = armEnd.cpy().sub(armStart).angle();
 		
 		hand = new Texture("arm/hand.png");
@@ -101,7 +112,7 @@ public class Arm extends GameObject{
 	}
 
 	public void setArmStart(Vector2 armStart) {
-		this.armStart = armStart;
+		this.armStart = armStart.cpy().scl(State.PHYS_SCALE);
 	}
 
 	public Vector2 getArmEnd() {
@@ -109,7 +120,19 @@ public class Arm extends GameObject{
 	}
 
 	public void setArmEnd(Vector2 armEnd) {
-		this.armEnd = armEnd;
+		this.armEnd = armEnd.cpy().scl(State.PHYS_SCALE);
+	}
+
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void create() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

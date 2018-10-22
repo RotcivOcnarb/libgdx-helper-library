@@ -16,8 +16,6 @@ import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.utils.FrameBufferStack;
 import com.mygdx.game.utils.ScreenSize;
 
-import io.anuke.gif.GifRecorder;
-
 public class StateManager implements InputProcessor, ControllerListener{
 	
 	ArrayList<State> states;

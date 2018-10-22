@@ -1,4 +1,4 @@
-package com.mygdx.game.phys;
+package com.mygdx.game.objects;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -12,6 +12,7 @@ public abstract class EmptyContact implements ContactListener{
 		ownerState = state;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public boolean compareCollision(Contact contact, Class class1, Class class2) {
 		if(class1.isInstance(contact.getFixtureA().getBody().getUserData())) {
 			if(class2.isInstance(contact.getFixtureB().getBody().getUserData())) {
@@ -28,6 +29,7 @@ public abstract class EmptyContact implements ContactListener{
 		return false;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public Object getInstanceFromContact(Contact contact, Class class1) {
 		if(class1.isInstance(contact.getFixtureA().getBody().getUserData())) {
 			return contact.getFixtureA().getBody().getUserData();

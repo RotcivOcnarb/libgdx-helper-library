@@ -1,12 +1,15 @@
 package com.mygdx.game;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.helper.Game;
-import com.mygdx.game.objects.GameObject;
-import com.mygdx.game.objects.GameParticle;
+import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.helper.Helper;
+import com.mygdx.game.objects.Triangulator;
+import com.mygdx.game.objects.Triangulator.TriangulatedNode;
 import com.mygdx.game.states.StateManager;
 
 import io.anuke.gif.GifRecorder;
@@ -23,7 +26,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		manager = new StateManager();
 		manager.create();
 		gifRecorder = new GifRecorder(batch);
-		
+
 	}
 
 	@Override
@@ -35,7 +38,7 @@ public class MyGdxGame extends ApplicationAdapter {
 		manager.render(batch);
 		
 		gifRecorder.update();
-		Game.globalTimer += Gdx.graphics.getDeltaTime();
+		Helper.Game.globalTimer += Gdx.graphics.getDeltaTime();
 	}
 	
 	@Override

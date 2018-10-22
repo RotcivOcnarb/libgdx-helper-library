@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.helper.Helper;
 import com.mygdx.game.states.State;
 
@@ -42,8 +41,18 @@ public class GameParticle extends GameObject{
 	}
 
 	public GameParticle(ObjectInfo info, Vector2 position, Texture texture) {
+		this(info, position, texture, 1);
+	}
+	
+	public GameParticle(ObjectInfo info, Vector2 position, Texture texture, float scale) {
 		this(info, position);
 		setTexture(texture);
+		transform.setScale(new Vector2(scale / State.PHYS_SCALE, scale / State.PHYS_SCALE));
+	}
+	
+	public GameParticle(ObjectInfo info, Vector2 position, Texture texture, float scale, float life) {
+		this(info, position, texture, scale);
+		this.life = life;
 	}
 	
 	public GameParticle(ObjectInfo info, Vector2 position, String text, BitmapFont font, Color color) {
@@ -88,15 +97,20 @@ public class GameParticle extends GameObject{
 		}
 
 		if(text != null) {
-			sb.setProjectionMatrix(Helper.getDefaultProjection());
 			font.setColor(fontColor.r, fontColor.g, fontColor.b, Math.min(1, life - globalTimer));
+			Helper.drawFont(sb, font, camera, text, transform.getPosition());
+			font.setColor(1, 1, 1, 1);
+
+		}
+			/*
+			sb.setProjectionMatrix(Helper.getDefaultProjection());
 			layout.setText(font, text);
 			
 			Vector3 rpos = camera.project(new Vector3(transform.getPosition(), 0));
 			font.draw(sb, text, rpos.x - layout.width/2f, rpos.y);
-			font.setColor(1, 1, 1, 1);
 			sb.setProjectionMatrix(camera.combined);
 		}
+		*/
 		
 		sb.setColor(1, 1, 1, 1);
 		Helper.disableBlend();
@@ -158,6 +172,18 @@ public class GameParticle extends GameObject{
 
 	public void setFontColor(Color fontColor) {
 		this.fontColor = fontColor;
+	}
+
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void create() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
