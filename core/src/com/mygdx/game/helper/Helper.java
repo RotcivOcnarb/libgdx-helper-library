@@ -250,7 +250,7 @@ public class Helper {
 			return b;
 		}
 		
-		public static Body creatCircleBody(World world, float radius, BodyDef def) {
+		public static Body createCircleBody(World world, float radius, BodyDef def) {
 			Body b =  world.createBody(def);
 			createCircleFixture(b, Vector2.Zero, radius);
 			return b;
