@@ -29,11 +29,13 @@ public abstract class PlatformPlayer extends GameObject{
 		super(info, properties);
 		BodyDef def = new BodyDef();
 		onFloor = true;
-		def.position.set(get("position", Vector2.class).cpy().scl(1/State.PHYS_SCALE));
+		Vector2 position = new Vector2(get("x", Float.class) + get("width", Float.class)/2f, get("y", Float.class) + get("height", Float.class) / 2f);
+		def.position.set(position.cpy().scl(1/State.PHYS_SCALE));
 		def.type = BodyType.DynamicBody;
 		def.fixedRotation = true;
-		body = Helper.PhysHelp.createBoxBody(getState().getWorld(), get("size", Vector2.class), def);
-		Fixture foot = Helper.PhysHelp.createCircleFixture(body, new Vector2(0, -get("size", Vector2.class).y/2f), get("size", Vector2.class).x/2f);
+		Vector2 size = new Vector2(get("width", Float.class), get("height", Float.class));
+		body = Helper.PhysHelp.createBoxBody(getState().getWorld(), size, def);
+		Fixture foot = Helper.PhysHelp.createCircleFixture(body, new Vector2(0, -size.y/2f), size.x/2f);
 		foot.setUserData("PLAYER_FOOT");
 		body.setUserData(this);
 		setJumpStrength(20);

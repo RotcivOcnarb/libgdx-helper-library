@@ -279,6 +279,7 @@ public class TmxRenderer{
 				Vector2 tileSize = new Vector2(tileLayer.getTileWidth(), tileLayer.getTileHeight());
 					
 				//Desenha os tiles
+				sb.begin();
 				for(int x = 0; x < tileLayer.getWidth(); x ++) {
 					for(int y = 0; y < tileLayer.getHeight(); y ++) {
 						Cell cell = tileLayer.getCell(x, y);
@@ -302,6 +303,7 @@ public class TmxRenderer{
 					}
 					
 				}
+				sb.end();
 			}
 		}
 	}
