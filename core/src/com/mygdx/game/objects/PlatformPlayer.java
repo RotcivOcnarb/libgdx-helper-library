@@ -29,16 +29,34 @@ public abstract class PlatformPlayer extends GameObject{
 		super(info, properties);
 		BodyDef def = new BodyDef();
 		onFloor = true;
-		def.position.set(get("position", Vector2.class).cpy().scl(1/State.PHYS_SCALE));
+		Vector2 position = new Vector2(get("x", Float.class) + get("width", Float.class)/2f, get("y", Float.class) + get("height", Float.class) / 2f);
+		def.position.set(position.cpy().scl(1/State.PHYS_SCALE));
 		def.type = BodyType.DynamicBody;
 		def.fixedRotation = true;
-		body = Helper.PhysHelp.createBoxBody(getState().getWorld(), get("size", Vector2.class), def);
-		Fixture foot = Helper.PhysHelp.createCircleFixture(body, new Vector2(0, -get("size", Vector2.class).y/2f), get("size", Vector2.class).x/2f);
+		Vector2 size = new Vector2(get("width", Float.class), get("height", Float.class));
+		body = Helper.PhysHelp.createBoxBody(getState().getWorld(), size, def);
+		Fixture foot = Helper.PhysHelp.createCircleFixture(body, new Vector2(0, -size.y/2f), size.x/2f);
 		foot.setUserData("PLAYER_FOOT");
 		body.setUserData(this);
 		setJumpStrength(20);
 		setTotalJumps(2);
 	}
+	
+	public PlatformPlayer(ObjectInfo info, Vector2 position, Vector2 size) {
+		super(info, new MapProperties());
+		BodyDef def = new BodyDef();
+		onFloor = true;
+		def.position.set(position.cpy().scl(1/State.PHYS_SCALE));
+		def.type = BodyType.DynamicBody;
+		def.fixedRotation = true;
+		body = Helper.PhysHelp.createBoxBody(getState().getWorld(), size, def);
+		Fixture foot = Helper.PhysHelp.createCircleFixture(body, new Vector2(0, -size.y/2f), size.x/2f);
+		foot.setUserData("PLAYER_FOOT");
+		body.setUserData(this);
+		setJumpStrength(20);
+		setTotalJumps(2);
+	}
+
 
 	
 	public boolean update(float delta) {
@@ -52,11 +70,6 @@ public abstract class PlatformPlayer extends GameObject{
 		if(!left && !right) {
 			body.setLinearVelocity(body.getLinearVelocity().x * 0.9f, body.getLinearVelocity().y);
 		}
-		
-		if(onFloor) {
-			jumps = totalJumps;
-		}
-		
 		return false;
 	}
 
@@ -70,6 +83,7 @@ public abstract class PlatformPlayer extends GameObject{
 			direction = 1;
 		}
 		if(keycode == Keys.UP) {
+			System.out.println("jumps: " + jumps);
 			if(jumps > 0) {
 				body.setLinearVelocity(body.getLinearVelocity().x, 0);
 				body.applyLinearImpulse(new Vector2(0, body.getMass() * jumpStrength), body.getWorldCenter(), true);
@@ -92,6 +106,9 @@ public abstract class PlatformPlayer extends GameObject{
 
 	public void setOnFloor(boolean b) {
 		onFloor = b;
+		if(b) {
+			jumps = totalJumps;
+		}
 	}
 
 	public float getJumpStrength() {
@@ -103,11 +120,12 @@ public abstract class PlatformPlayer extends GameObject{
 	}
 
 	public int getTotalJumps() {
-		return totalJumps-1;
+		return totalJumps;
 	}
 
 	public void setTotalJumps(int totalJumps) {
-		this.totalJumps = totalJumps-1;
+		this.totalJumps = totalJumps;
+		jumps = totalJumps;
 	}
 	
 	public void setSpeed(float speed) {

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="56" height="47" tilewidth="16" tileheight="16" infinite="0" nextobjectid="8">
+ <tileset firstgid="1" source="sheet.tsx"/>
+ <objectgroup name="Objects">
+  <object id="2" type="object" x="134" y="575" width="701" height="73"/>
+  <object id="3" type="object" x="208" y="227" width="142" height="142">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object id="4" type="object" x="382" y="441" width="49" height="49">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+   </properties>
+  </object>
+  <object id="5" type="object" x="450.357" y="297.548" width="37" height="46" rotation="-305.751">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+   </properties>
+  </object>
+  <object id="6" type="object" x="490" y="352">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+   </properties>
+   <polygon points="0,0 -9,75 42,46 50,105 100,18 35,11 35,-47"/>
+  </object>
+  <object id="7" type="object" x="201" y="443">
+   <properties>
+    <property name="bodyType" value="DynamicBody"/>
+   </properties>
+   <polygon points="0,0 -5,69 73,84 91,10 41,-43"/>
+  </object>
+ </objectgroup>
+</map>

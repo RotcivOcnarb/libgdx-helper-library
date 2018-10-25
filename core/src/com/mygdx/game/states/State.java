@@ -166,6 +166,7 @@ public abstract class State{
 	
 	public void postRender(SpriteBatch sb) {
 		
+		if(tmxRenderer != null)
 		tmxRenderer.render(sb, sr, camera);
 		
 		sb.begin();
@@ -193,6 +194,7 @@ public abstract class State{
 	public void preUpdate(float delta) {
 		camera.update();
 		
+		if(tmxRenderer != null)
 		tmxRenderer.update(delta);
 		
 		Collections.sort(gos, new Comparator<GameObject>() {
