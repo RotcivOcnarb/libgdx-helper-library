@@ -35,7 +35,7 @@ public abstract class TopDownPlayer extends GameObject{
 				get("y", Float.class) + get("height", Float.class) / 2f);
 		
 		def.position.set(position.scl(1/State.PHYS_SCALE));
-		body = Helper.PhysHelp.creatCircleBody(getState().getWorld(), get("width", Float.class)/2f, def);
+		body = Helper.PhysHelp.createCircleBody(getState().getWorld(), get("width", Float.class)/2f, def);
 		body.setUserData(this);
 		input = new Vector2();
 	}
